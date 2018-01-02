@@ -1,0 +1,18 @@
+.include-edit {
+    width: 93%;
+}
+
+.form-cad {
+    padding-left: 0px !important;
+}
+
+.form-cad .modal-dialog {
+    margin: 0 !important;
+}
+.form-cad form{
+    margin: 1%;
+}
+
+div#modalPush {
+    margin-left: 20%;
+}
