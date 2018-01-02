@@ -1,8 +1,15 @@
 angular.module('calendarApp')
     .controller('userCtrl',
-        function($scope, gridService){
+        function($scope, gridService, $http){
             $scope.listData = [{_cod: '01', name: 'André', password:'teste'},{_cod: '01', name: 'André', password:'teste'}];
             gridService.listData = $scope.listData;
+
+            $scope.add = function() {
+                console.log("f add");
+                $http.post("http://192.168.123.197:3000/activities", {name: "teste"})
+                    .then(function(success){ console.log("succes: " + success) }, function(error){console.log("err: " + JSON.stringify( error))});
+               // refreshData();
+            }
 
             $scope.action = ''; //i - include | e - edit
 
