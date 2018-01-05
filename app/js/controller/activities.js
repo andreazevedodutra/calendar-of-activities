@@ -28,6 +28,24 @@ angular.module('calendarApp')
                         }
                     );
 
+                    function addSelectItens(id,selectItem){
+                        $('#' + id + ' option').each(function(){
+                                selectItem.push( $(this).val());
+                        });
+                        return selectItem;
+                    }
+
+                    function getJSONData(){
+                        return {name: $scope.name,
+                                dt_start: $scope.dt_start,
+                                dt_end: $scope.dt_end,
+                                local: $scope.local,
+                                users: addSelectItens("textarea2E", $scope.insertListUsers),
+                                vehicles: addSelectItens("textarea2V", $scope.insertListVehicles),
+                                value: $scope.value,
+                                resourceType: $scope.resourceType};
+                    }
+
                     function addRest( newObj ) {
                         $http.post(urlData, newObj).then(
                             function(success){
@@ -40,7 +58,7 @@ angular.module('calendarApp')
                     }
 
                     function updateRest(id,name) {
-                        $http.put(urlData + '/' + id, {name: $scope.name} ).then(
+                        $http.put(urlData + '/' + id, getJSONData() ).then(
                             function(success){
                                 console.log('sucess: ' + JSON.stringify(success) );
                             },
@@ -54,6 +72,13 @@ angular.module('calendarApp')
 
                     $scope.include = function(){
                         $scope.name = '';
+                        $scope.dt_start = '';
+                        $scope.dt_end = '';
+                        $scope.local = '';
+                        $scope.insertListUsers = [];
+                        $scope.insertListVehicles = [];
+                        $scope.value = '';
+                        $scope.resourceType = '';
                         $scope.action = 'i';
                     }
 
@@ -82,10 +107,9 @@ angular.module('calendarApp')
                         if( $('.ng-invalid').lenght ) {
                             //
                         } else {
-                            console.log('teste');
                             if($scope.action == 'i') {
 
-                                var newData = { name: $scope.name };
+                                var newData = getJSONData();
                                 $scope.listData.push(newData);
                                 addRest(newData);
                             } else {
@@ -96,5 +120,28 @@ angular.module('calendarApp')
                             $("#modalPush").modal('hide');
                         }
                     }
+
+
+
+                    function setSelectItens(copy, textarea2, textarea, remove){
+                        $(function(){
+                            $(copy).on("click", function(){
+                                $(".options option:selected").each(function(){
+                                   $(textarea2).append('<option value='+$(this).text()+'>'+$(this).text()+'</option>');
+                                    $('option:selected', textarea).remove();
+                                });
+                            });
+                            $(remove).on("click", function(){
+                                $(".remove option:selected").each(function(){
+                                   $(textarea).append('<option>'+$(this).text()+'</option>');
+                                    $('option:selected', textarea2).remove();
+                                });
+                            });
+                        });
+                    }
+
+                    setSelectItens("#copyE","#textarea2E","#textareaE","#removeE");
+                    setSelectItens("#copyV","#textarea2V","#textareaV","#removeV");
+
                 }
             );

@@ -33,16 +33,16 @@
                                                 <label for="local" class="control-label">Equipe</label>
                                             </div>
                                             <div>
-                                                <select multiple="multiple" class="options" id="textarea">
+                                                <select multiple="multiple" class="options" id="textareaE">
                                                     <option ng-repeat="option in listUsers" value="option.name">{{option.name}}</option>
                                                 </select>
-                                                    <button id="copy">></button>
-                                                    <button id="remove"><</button>
+                                                    <button id="copyE">></button>
+                                                    <button id="removeE"><</button>
 
-                                                    <select id="textarea2" multiple class="remove">
+                                                    <select id="textarea2E" multiple class="remove" ng-model="insertListUsers">
                                                     </select>
                                             </div>
-
+                                            <tt>multipleSelect = {{insertListUsers}}</tt><br/>
                                     </div><!-- form-group Quem -->
 
                                     <div class="form-group">
@@ -51,17 +51,17 @@
                                             </div>
                                             <div>
 
-                                                <select multiple="multiple" class="options" id="textarea">
+                                                <select multiple="multiple" class="options" id="textareaV">
                                                     <option ng-repeat="opt in listVehicles" value="opt.plate">{{opt.plate}}</option>
                                                 </select>
 
 
-                                                <button id="copy">></button>
-                                                <button id="remove"><</button>
+                                                <button id="copyV">></button>
+                                                <button id="removeV"><</button>
 
 
 
-                                                <select id="textarea2" multiple class="remove">
+                                                <select id="textarea2V" multiple class="remove" ng-model="insertListVehicles">
 
                                                 </select>
                                             </div>
@@ -70,27 +70,18 @@
 
                                     <div class="form-group">
                                             <div>
-                                                    <label for="local" class="control-label">Recursos</label>
+                                                    <label for="resources" class="control-label">Recursos</label>
                                             </div>
                                             <div>
+                                                    <div>
+                                                        <label for="resources" class="control-label">Valor</label>
+                                                        <input type="money" class="form-control" name="value" ng-model="value" />
+                                                    </div>
+                                                    <div>
+                                                            <input type="radio" name="resourceType" ng-model="resourceType" value="Diaria" >Diaria</input>
+                                                            <input type="radio" name="resourceType" ng-model="resourceType" value="Indenização" >Indenização</input>
+                                                    </div>
 
-                                                    <select multiple="multiple" class="options" id="textarea">
-                                                            <option value="item1">Item 1</option>
-                                                            <option value="item2">Item 2</option>
-                                                            <option value="item3">Item 3</option>
-                                                            <option value="item4">Item 4</option>
-                                                            <option value="item5">Item 5</option>
-                                                        </select>
-
-
-                                                        <button id="copy">></button>
-                                                        <button id="remove"><</button>
-
-
-
-                                                        <select id="textarea2" multiple class="remove">
-
-                                                        </select>
                                             </div>
 
                                     </div><!-- form-group Recursos -->
@@ -127,8 +118,8 @@
                             <td>{{item.dt_end}}</td>
                             <td>{{item.local}}</td>
                             <td>{{item.users}}</td>
-                            <td>{{item.veicles}}</td>
-                            <td>{{item.resources}}</td>
+                            <td>{{item.vehicles}}</td>
+                            <td> <span ng-if="item.value && item.resourceType" >R$ {{item.value}} {{item.resourceType}}</span></td>
                             <td>
                                 <button class="btn btn-primary" ng-click="show_edit(item.name,item.password,$index)">Editar</button>
                                 <button class="btn btn-primary">Excluir</button>
