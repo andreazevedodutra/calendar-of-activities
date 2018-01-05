@@ -3,28 +3,27 @@
 
 <div class="well">
 
-    <header-form data='Usuário'></header-form>
-    <div class="controller-manager">
-        <button type="button" class="btn btn-primary btn-lg insert" data-toggle="modal" data-target="#modalPush" ng-click="include()">Incluir</button>
-    </div>
+    <header-form data='Equipe'></header-form>
     <div ng-controller="userCtrl">
-            <button type="button" class="btn btn-primary btn-lg insert" ng-click="add()">Teste Add</button>
+            <div class="controller-manager">
+                    <button type="button" class="btn btn-primary btn-lg insert" data-toggle="modal" data-target="#modalPush" ng-click="include()">Incluir</button>
+            </div>
+            <!-- <button type="button" class="btn btn-primary btn-lg insert" ng-click="add()">Teste Add</button> -->
     <div id="modalPush" class="form-cad modal fade dialog" >
         <div class="modal-dialog">
         <div class="include-edit">
             <div class="modal-content">
-                <form id="form-manager" data-toggle="validator" role="form">
+                <form id="form-manager"  data-toggle="validator" role="form">
                         <div class="tab-content">
                             <div class="form-group">
                                 <label for="category" class="control-label">Nome</label>
-                                <input type="text" class="form-control" name="name" ng-model="name" required>
+                                <input type="text" class="form-control" name="name" ng-model="name" required >
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="problem" class="control-label" >Senha</label>
-                                <input type="text" class="form-control" name="password" ng-model="password" required>
+                                <label for="password" class="control-label" >Senha</label>
+                                <input type="text" class="form-control" name="password" ng-model="password" >
                             </div>
-
                             <button type="submit" class="btn btn-default btn-primary btnPrevious"   ng-click="save_push()" >Salvar</button>
                     </div>
                 </form>
@@ -42,16 +41,14 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Senha</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in listData">
                     <td>{{item.name}}</td>
-                    <td>{{item.password}}</td>
                     <td>
                         <button class="btn btn-primary" ng-click="show_edit(item.name,item.password,$index)">Editar</button>
-                        <button class="btn btn-primary">Excluir</button>
+                        <button class="btn btn-primary" ng-click="delete($index)">Excluir</button>
                     </td>
                 </tr>
             </tbody>

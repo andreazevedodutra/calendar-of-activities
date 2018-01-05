@@ -1,0 +1,141 @@
+
+<div class="content">
+
+        <div class="well">
+
+            <header-form data='Atividades'></header-form>
+            <div ng-controller="activitiesCtrl">
+            <div class="controller-manager">
+                <button type="button" class="btn btn-primary btn-lg insert" data-toggle="modal" data-target="#modalPush" ng-click="include()">Incluir</button>
+            </div>
+            <div id="modalPush" class="form-cad modal fade dialog" >
+                <div class="modal-dialog">
+                <div class="include-edit">
+                    <div class="modal-content">
+                        <form id="form-manager" data-toggle="validator" role="form">
+                                <div class="tab-content">
+                                    <div class="form-group">
+                                        <label for="name" class="control-label">Descrição</label>
+                                        <input type="text" class="form-control" name="name" ng-model="name" required />
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="dt_start" class="control-label">Data Início</label>
+                                            <input type="date" class="form-control" name="dt_start" ng-model="dt_start" required />
+                                            <label for="dt_end" class="control-label">Data Fim</label>
+                                            <input type="date" class="form-control" name="dt_end" ng-model="dt_end" required />
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="local" class="control-label">Local</label>
+                                            <input type="text" class="form-control" name="local" ng-model="local" />
+                                        </div>
+                                    <div class="form-group">
+                                            <div>
+                                                <label for="local" class="control-label">Equipe</label>
+                                            </div>
+                                            <div>
+                                                <select multiple="multiple" class="options" id="textarea">
+                                                    <option ng-repeat="option in listUsers" value="option.name">{{option.name}}</option>
+                                                </select>
+                                                    <button id="copy">></button>
+                                                    <button id="remove"><</button>
+
+                                                    <select id="textarea2" multiple class="remove">
+                                                    </select>
+                                            </div>
+
+                                    </div><!-- form-group Quem -->
+
+                                    <div class="form-group">
+                                            <div>
+                                                <label for="local" class="control-label">Veículos</label>
+                                            </div>
+                                            <div>
+
+                                                <select multiple="multiple" class="options" id="textarea">
+                                                    <option ng-repeat="opt in listVehicles" value="opt.plate">{{opt.plate}}</option>
+                                                </select>
+
+
+                                                <button id="copy">></button>
+                                                <button id="remove"><</button>
+
+
+
+                                                <select id="textarea2" multiple class="remove">
+
+                                                </select>
+                                            </div>
+
+                                    </div><!-- form-group Veículos -->
+
+                                    <div class="form-group">
+                                            <div>
+                                                    <label for="local" class="control-label">Recursos</label>
+                                            </div>
+                                            <div>
+
+                                                    <select multiple="multiple" class="options" id="textarea">
+                                                            <option value="item1">Item 1</option>
+                                                            <option value="item2">Item 2</option>
+                                                            <option value="item3">Item 3</option>
+                                                            <option value="item4">Item 4</option>
+                                                            <option value="item5">Item 5</option>
+                                                        </select>
+
+
+                                                        <button id="copy">></button>
+                                                        <button id="remove"><</button>
+
+
+
+                                                        <select id="textarea2" multiple class="remove">
+
+                                                        </select>
+                                            </div>
+
+                                    </div><!-- form-group Recursos -->
+
+                                    <button type="submit" class="btn btn-default btn-primary btnPrevious"   ng-click="save_push()" >Salvar</button>
+                            </div>
+                        </form>
+                    </div><!-- modal-content -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btnPrevious" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div><!-- include-edit -->
+            </div><!-- modal-dialog -->
+            </div><!-- modal-push -->
+
+
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Data Inicio</th>
+                            <th>Data Fim</th>
+                            <th>Local</th>
+                            <th>Usuários</th>
+                            <th>Veículos</th>
+                            <th>Recursos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listData">
+                            <td>{{item.name}}</td>
+                            <td>{{item.dt_start}}</td>
+                            <td>{{item.dt_end}}</td>
+                            <td>{{item.local}}</td>
+                            <td>{{item.users}}</td>
+                            <td>{{item.veicles}}</td>
+                            <td>{{item.resources}}</td>
+                            <td>
+                                <button class="btn btn-primary" ng-click="show_edit(item.name,item.password,$index)">Editar</button>
+                                <button class="btn btn-primary">Excluir</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><!-- userCrtl -->
+        </div><!-- well -->
+        </div><!-- content -->

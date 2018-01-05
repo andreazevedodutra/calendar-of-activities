@@ -5,7 +5,8 @@ angular.module('calendarApp')
         return {
             htmlHead: '',
             htmlItems: '',
-            listData: ''
+            listData: '',
+            urlGlobal: 'http://192.168.123.197:3000/'
         }
     })
     .controller('gridCtrl', function($scope ,$rootScope, gridService){
